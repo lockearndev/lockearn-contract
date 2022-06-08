@@ -837,6 +837,28 @@ contract LockEarn is ERC20Detailed, Ownable {
         totalFee = 0;
     }
 
+
+    function updateFees(
+        uint256 _liquidityFee, 
+        uint256 _treasuryFee, 
+        uint256 _insuranceFee, 
+        uint256 _rewardPoolFee, 
+        uint256 _burnFee, 
+        uint256 _reflectionFee, 
+        uint256 _reflectionFeePlus
+    ) external onlyOwner {
+        liquidityFee = _liquidityFee;
+        treasuryFee = _treasuryFee;
+        insuranceFee = _insuranceFee;
+        rewardPoolFee = _rewardPoolFee;
+        burnFee = _burnFee;
+        reflectionFee = _reflectionFee;
+        reflectionFeePlus = _reflectionFeePlus;
+
+        sellFee = reflectionFeePlus.add(burnFee);
+        totalFee = liquidityFee.add(treasuryFee).add(insuranceFee).add(reflectionFee).add(rewardPoolFee);
+    }
+
     function setNormalFees() external onlyOwner {
         liquidityFee = 10;
         treasuryFee = 40;
