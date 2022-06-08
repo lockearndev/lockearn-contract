@@ -1150,7 +1150,7 @@ contract LockEarn is ERC20Detailed, Ownable {
         );
 
         uint256 _currentFee = treasuryFee.add(insuranceFee).add(reflectionFee).add(reflectionFeePlus).add(rewardPoolFee);
-        uint256 _reflectionFee = reflectionFee.add(reflectionFeePlus);
+        uint256 _reflectionFee = reflectionFee;
         uint256 amountBNBReflection = currentBalance.mul(_reflectionFee).div(
             _currentFee
         );
